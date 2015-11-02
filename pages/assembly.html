@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="johnmorach.github.io : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/stylesheet.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/menustyles.css">
+
+    <title>johnmorach.github.io</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/johnmorach">View on GitHub</a>
+
+          <h1 id="project_title">johnmorach.github.io - Assembly</h1>
+          <h2 id="project_tagline"></h2>
+
+        </header>
+    </div>
+	
+	<div id='cssmenu'>
+		<ul>
+			<li><a href='../index.html'><span>Home</span></a></li>
+			<li class="active has-sub"><a href="#"><span>2014-2015</span></a>
+			<ul>
+				<li class='active has-sub'><a href="../pages/apcompsci.html"><span>AP Computer Science</span></a>
+				<ul>
+					<li><a href="../pages/recursion.html"><span>Recursion</span></a></li>
+					<li><a href="../pages/exceptions.html"><span>Exceptions</span></a></li>
+					<li><a href="../pages/fileio.html"><span>File IO</span></a></li>
+					<li><a href="../pages/swing.html"><span>Swing GUIs</span></a></li>
+					<li><a href="../pages/datastructures.html"><span>Data Structures</span></a></li>
+					<li><a href="../pages/assembly.html"><span>Assembly</span></a></li>
+					<li class='last'><a href="../pages/android.html"><span>Android</span></a></li>
+				</ul>
+				</li>
+			</ul>
+			<li><a href='../pages/about.html'><span>About</span></a></li>
+			<li class='last'><a href='../pages/contact.html'><span>Contact</span></a></li>
+		</ul>
+	</div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>Assembly</h2>
+		<p>From March 2015 to May 2015 I learned assembly language by following the information found at <a href="https://chortle.ccsu.edu/AssemblyTutorial/index.html">Programmed Introduction to MIPS Assembly Language</a>. This was a much different experience from what I had worked on before - Java abstracts a lot of the details that programmers need to be concerned with when working in assembly.</p>
+		<h3>Beginnings</h3>
+		<p>I started out working with the very basics. In assembly I had to operate directly with the different memory registers, performing operations such as "or" and "add" to work with individual registers and multiple registers. At this point, I had no way of writing to any console or providing any user-friendly output - the output was the values in the different memory registers.</p>
+		<img src="../images/Assembly1.png" width=200>
+		<img src="../images/Assembly2.png" width=200>
+		<h3>"Syscall"</h3>
+		<p>The syscall command in MIPS Assembly Language is a very important one, and this command was the next thing that I learned. The syscall command allows for the implementation of features such as input and output through a console, which are necessary for creating useful programs. Combining syscall and other things that I learned how to implement in assembly language, such as loops, allowed me to write much more complex and useful programs than I was able to create before.</p> 
+		<img src="../images/Assembly3.png" width=200>
+		<img src="../images/Assembly4.png" width=200>
+		<img src="../images/Assembly5.png" width=200>
+		<img src="../images/Assembly6.png" width=200>
+		<h3>Functions</h3>
+		<p>Up to this point in the process of learning assembly language, all of my programs had been essentially one function, although there were different sections within this function. Learning the "jal" and "jr" commands were essential, as they allowed me to create separate functions for performing specific tasks. This is a crucial part of programming, so learning these commands was a major step in being able to create larger and better programs.
+		<img src="../images/Assembly7.png" width=200>
+		<img src="../images/Assembly8.png" width=200>
+		<h3>Floating Point Registers</h3>
+		<p>Floating point numbers are useful for many tasks within programs, so learning how to use the floating point registers through the MIPS Assembly Language was another important lesson. Floating point numbers are applicable to a variety of tasks where simple integers do not work or are not easy to use.</p>
+		<h3>Conclusions</h3>
+		<p>By the end of the work that I did with the MIPS Assembly Language, I was able to write programs that could be useful and that mimicked some of the programs that I could write in other languages such as Java. Programming in assembly language requires the programmer to consider many more details that are abstracted in higher-level languages, but assembly language gives programmers more freedom than other languages.</p>
+	  </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+		<p>Menus from <a href="http://cssmenumaker.com/menu/opera-drop-down-menu">CSS MenuMaker</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
