@@ -11,15 +11,15 @@
 
     <title>johnmorach.github.io</title>
   </head>
-
-  <body>
+  
+  <body onload=start()>
 
     <!-- HEADER -->
     <div id=header_wrap class=outer>
         <header class=inner>
           <a id=forkme_banner href=https://github.com/johnmorach>View on GitHub</a>
 
-          <h1 id=project_title>AP Computer Science A</h1>
+          <h1 id=project_title>johnmorach.github.io</h1>
           <h2 id=project_tagline></h2>
 
         </header>
@@ -82,13 +82,104 @@
     <!-- MAIN CONTENT -->
     <div id=main_content_wrap class=outer>
       <section id=main_content class=inner>
-        <h2>Swing</h2>
-		<p>In November 2014 I learned how to use Swing, which is the Java API for creating GUIs (Graphical User Interfaces). The purpose of GUIs is very straightforward - they present information in a way that is more useful and accessible for users of a program. Most people do not want to deal with text input and output through a console, so GUIs are created for them. GUIs also improve the appearance of a program, so learning how to create them was important in my ability to create professional-looking programs. There are a variety of different layouts and components within Swing that I learned how to use, all of them with applications to different GUIs for different programs.</p>
-		<img src=../../images/Swing1.png>
-		<img src=../../images/Swing2.png>
-      </section>
+	  <p>Left click to add a cube. Right click to add a sphere.</p>
+	  
+	<script src=gl-matrix-2.2.1.js></script>
+		<script src=webgl-utils.js></script>
+		<script src=globjects.js></script>
+		<canvas id=glcanvas width=640 height=480></canvas>
+		
+		<script id=shader-fs type=x-shader/x-fragment>
+			precision mediump float;
+			
+			varying vec2 vTextureCoord;
+			varying vec3 vLightWeighting;
+			
+			uniform sampler2D uSampler;
+			uniform bool uUseTextures;
+			
+			void main(void) {
+				vec4 textureColor;
+				if (uUseTextures) {
+					textureColor = texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t));
+				} else {
+					textureColor = vec4(1.0, 1.0, 1.0, 1.0);
+				}
+				gl_FragColor = vec4(textureColor.rgb * vLightWeighting, textureColor.a);
+			}
+		</script>
+		
+		<script id=shader-vs type=x-shader/x-vertex>
+			attribute vec3 aVertexPosition;
+			attribute vec3 aVertexNormal;
+			attribute vec2 aTextureCoord;
+			
+			uniform mat4 uMVMatrix;
+			uniform mat4 uPMatrix;
+			uniform mat3 uNMatrix;
+			
+			uniform vec3 uAmbientColor;
+			
+			uniform vec3 uPointLightingLocation;
+			uniform vec3 uPointLightingColor;
+			
+			uniform bool uUseLighting;
+			
+			varying vec2 vTextureCoord;
+			varying vec3 vLightWeighting;
+			
+			void main(void) {
+				vec4 mvPosition = uMVMatrix * vec4(aVertexPosition, 1.0);
+				gl_Position = uPMatrix * mvPosition;
+				vTextureCoord = aTextureCoord;
+				
+				if (!uUseLighting) {
+					vLightWeighting = vec3(1.0, 1.0, 1.0);
+				} else {
+					vec3 lightDirection = normalize(uPointLightingLocation - mvPosition.xyz);
+					
+					vec3 transformedNormal = uNMatrix * aVertexNormal;
+					float directionalLightWeighting = max(dot(transformedNormal, lightDirection), 0.0);
+					vLightWeighting = uAmbientColor + uPointLightingColor * directionalLightWeighting;
+				}
+			}
+		</script>
+		
+		<br/>
+		<input type=checkbox id=lighting checked /> Use Lighting<br/>
+		
+		<h2>Point Light:</h2>
+		<table style=border: 0; padding: 10px;>
+			<tr>
+				<td><b>Location:</b>
+				<td>X: <input type=text id=lightPositionX value=0.0 />
+				<td>Y: <input type=text id=lightPositionY value=0.0 />
+				<td>Z: <input type=text id=lightPositionZ value=-16.0 />
+			</tr>
+			<tr>
+				<td><b>Color:</b>
+				<td>R: <input type=text id=pointR value=0.8 />
+				<td>G: <input type=text id=pointG value=0.8 />
+				<td>B: <input type=text id=pointB value=0.8 />
+			</tr>
+		</table>
+		
+		<h2>Ambient Light:</h2>
+		<table style=border: 0; padding: 10px;>
+			<tr>
+				<td><b>Color:</b>
+				<td>R: <input type=text id=ambientR value=0.2 />
+				<td>G: <input type=text id=ambientG value=0.2 />
+				<td>B: <input type=text id=ambientB value=0.2 />
+			</tr>
+		</table>
+		<br/>
+		
+		<h2>Objects:</h2>
+		<table style=border: 0; padding: 10px id=objects></table>
+	</section>
     </div>
-
+	
     <!-- FOOTER  -->
     <div id=footer_wrap class=outer>
       <footer class=inner>
