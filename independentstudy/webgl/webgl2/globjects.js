@@ -161,7 +161,7 @@ function initModelBuffers(model, index, x, y, z) {
 	
 	indexBuffers[index] = gl.createBuffer();
 	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffers[index]);
-	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(model.indices), STATIC_DRAW);
+	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(model.indices), gl.STATIC_DRAW);
 	indexBuffers[index].itemSize = 1;
 	indexBuffers[index].numItems = model.indices.length;
 	
