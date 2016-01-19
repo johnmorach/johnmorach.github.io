@@ -237,7 +237,6 @@ function drawObj(index) {
 	mvPushMatrix();
 	mat4.rotate(mvMatrix, mvMatrix, 0, [0, 1, 0]);
 	mat4.translate(mvMatrix, mvMatrix, [5, 0, 0]);
-	mat4.translate(mvMatrix, mvMatrix, objCoordinates[index]);
 	
 	gl.uniform4f(
 		shaderProgram.colorUniform,
