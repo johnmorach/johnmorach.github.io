@@ -177,12 +177,12 @@ function initModelBuffers(model, index, x, y, z, isCube) {
 	colors[index] = colorArray;	
 }
 
-function loadObject(file, index, x, y, z) {
+function loadObject(file, index, x, y, z, isCube) {
 	var request = new XMLHttpRequest();
 	request.open("GET", file);
 	request.onreadystatechange = function() {
 		if (request.readyState == 4) {
-			initModelBuffers(JSON.parse(request.responseText), index, x, y, z);
+			initModelBuffers(JSON.parse(request.responseText), index, x, y, z, isCube);
 		}
 	};
 	request.send();
@@ -312,7 +312,8 @@ function mouseClick(event) {
 	var z = 0;
 	
 	if (event.button === 2) {
-		loadObject("sphere.json", positionBuffers.length, x, y, z, false);
+		//loadObject("sphere.json", positionBuffers.length, x, y, z, false);
+		loadObject("teapot.json", positionBuffers.length, x, y, z, false);
 	} else {
 		loadObject("cube.json", positionBuffers.length, x, y, z, true);
 	}
