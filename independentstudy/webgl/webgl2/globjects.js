@@ -138,8 +138,8 @@ function setMatrixUniforms() {
 	gl.uniformMatrix3fv(shaderProgram.nMatrixUniform, false, normalMatrix);
 }
 
-function initModelBuffers(model, index, x, y, z) {
-	addTableRow(index, x, y, z, true);
+function initModelBuffers(model, index, x, y, z, isCube) {
+	addTableRow(index, x, y, z, isCube);
 	
 	positionBuffers[index] = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffers[index]);
@@ -312,9 +312,9 @@ function mouseClick(event) {
 	var z = 0;
 	
 	if (event.button === 2) {
-		loadObject("sphere.json", positionBuffers.length, x, y, z);
+		loadObject("sphere.json", positionBuffers.length, x, y, z, false);
 	} else {
-		loadObject("cube.json", positionBuffers.length, x, y, z);
+		loadObject("cube.json", positionBuffers.length, x, y, z, true);
 	}
 }
 
