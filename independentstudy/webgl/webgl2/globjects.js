@@ -11,6 +11,7 @@ var indexBuffers = [];
 var colors = [];
 var lastTime = 0;
 var canvas;
+var objCoordinates = [];
 
 function initGL() {
 	try {
@@ -167,6 +168,8 @@ function initModelBuffers(model, index, x, y, z) {
 	
 	var colorArray = [Math.random(), Math.random(), Math.random(), 1.0];
 	colors[index] = colorArray;
+	
+	objCoordinates[index] = [x, y, z];
 }
 
 function loadObject(file, index, x, y, z) {
@@ -229,6 +232,7 @@ function drawObj(index) {
 	mvPushMatrix();
 	mat4.rotate(mvMatrix, mvMatrix, 0, [0, 1, 0]);
 	mat4.translate(mvMatrix, mvMatrix, [5, 0, 0]);
+	mat4.translate(mvMatrix, mvMatrix, objCoordinates[index]);
 	
 	gl.uniform4f(
 		shaderProgram.colorUniform,
@@ -355,6 +359,7 @@ function delObj(index) {
 	normalBuffers.splice(index, 1);
 	textureCoordBuffers.splice(index, 1);
 	indexBuffers.splice(index, 1);
+	objCoordinates.splice(index, 1);
 	var parent = document.getElementById("objects");
 	var child = document.getElementById("o" + index);
 	parent.removeChild(child);
