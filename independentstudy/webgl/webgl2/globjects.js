@@ -11,7 +11,6 @@ var indexBuffers = [];
 var colors = [];
 var lastTime = 0;
 var canvas;
-var objCoordinates = [];
 
 function initGL() {
 	try {
@@ -144,6 +143,14 @@ function initModelBuffers(model, index, x, y, z) {
 	
 	positionBuffers[index] = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffers[index]);
+	for (var i = 0; i < model.vertexPositions.length; i++) {
+		if (i % 3 == 0)
+			model.vertexPositions[i] += x;
+		if (i % 3 == 1)
+			model.vertexPositions[i] += y;
+		if (i % 3 == 2)
+			model.vertexPositions[i] += z;
+	}
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(model.vertexPositions), gl.STATIC_DRAW);
 	positionBuffers[index].itemSize = 3;
 	positionBuffers[index].numItems = model.vertexPositions.length / 3;
@@ -167,9 +174,7 @@ function initModelBuffers(model, index, x, y, z) {
 	indexBuffers[index].numItems = model.indices.length;
 	
 	var colorArray = [Math.random(), Math.random(), Math.random(), 1.0];
-	colors[index] = colorArray;
-	
-	objCoordinates[index] = [x, y, z];
+	colors[index] = colorArray;	
 }
 
 function loadObject(file, index, x, y, z) {
@@ -359,7 +364,6 @@ function delObj(index) {
 	normalBuffers.splice(index, 1);
 	textureCoordBuffers.splice(index, 1);
 	indexBuffers.splice(index, 1);
-	objCoordinates.splice(index, 1);
 	var parent = document.getElementById("objects");
 	var child = document.getElementById("o" + index);
 	parent.removeChild(child);
