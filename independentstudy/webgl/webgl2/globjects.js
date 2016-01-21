@@ -312,8 +312,8 @@ function mouseClick(event) {
 	var z = 0;
 	
 	if (event.button === 2) {
-		//loadObject("sphere.json", positionBuffers.length, x, y, z, false);
-		loadObject("teapot.json", positionBuffers.length, x, y, z, false);
+		loadObject("sphere.json", positionBuffers.length, x, y, z, false);
+		//loadObject("teapot.json", positionBuffers.length, x, y, z, false);
 	} else {
 		loadObject("cube.json", positionBuffers.length, x, y, z, true);
 	}
