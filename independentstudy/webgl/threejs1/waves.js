@@ -6,7 +6,7 @@ var mesh;
 function init() {
 	dcanvas = document.getElementById("canvas");
 	
-	camera = new THREE.PerspectiveCamera(27, window.innerWidth / window.innerHeight, 5, 3500);
+	camera = new THREE.PerspectiveCamera(27, 640 / 480, 5, 3500);
 	camera.position.z = 2750;
 	scene = new THREE.Scene();
 	var particles = 5000;
@@ -37,7 +37,7 @@ function init() {
 	
 	renderer = new THREE.WebGLRenderer({antialias: false, canvas: dcanvas});
 	renderer.setPixelRatio(window.devicePixelRatio);
-	renderer.setSize(window.innerWidth, window.innerHeight);
+	renderer.setSize(640, 480);
 	
 	animate();
 }
